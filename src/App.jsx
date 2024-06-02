@@ -3,7 +3,7 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 // import Code_space from './components/Code_space';
-import CodeSpace from './components/CodeSpace';
+import Code_space from './components/Code_space';
 
 
 // import './App.css'
@@ -98,13 +98,11 @@ function App() {
 
   return (<>
       <div style={{backgroundColor:"grey"}}>
-
-        {/* <Code_space submit_to_API={handle}/> */}
-          <CodeSpace/>
+          <Code_space/>
       </div>
 
       <div style={{backgroundColor: "greenyellow"}}>
-      <button onClick ={getresults}>Click me to get results </button>
+        <button onClick ={getresults}>Click me to get results </button>
       </div>
   </>
   )
