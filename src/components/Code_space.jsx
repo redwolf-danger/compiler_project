@@ -8,7 +8,8 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import Button from "@mui/material/Button";
 import Language_Select from "./Language_Select";
-import { TextareaAutosize } from '@mui/base/TextareaAutosize';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 import {React,useState } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -30,7 +31,20 @@ const Code_space = ({ submit_to_API }) => {
     <div>
       <form onSubmit={handleSubmit(onsubmit)}>
         <Language_Select props_for_select={props_for_select}/>
-        <textarea {...register("code_area")} cols="30" rows="10"></textarea>
+        {/* <textarea {...register("code_area")} cols="30" rows="10"></textarea> */}
+        <Box component={"div"}>
+          
+        <TextField
+        sx={{minWidth:"80vw"}}
+        hiddenLabel
+        {...register("code_area")}
+        defaultValue="Small"
+        variant="filled"
+        multiline 
+        minRows={20}
+        maxRows={30}
+        />
+        </Box>
 
        
         {/*todo opens */}
