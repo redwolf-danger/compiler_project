@@ -97,7 +97,7 @@ function App() {
 
 
   return (<>
-      <div style={{backgroundColor:"grey"}}>
+      <div>
           <Code_space/>
       </div>
 
