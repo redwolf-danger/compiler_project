@@ -56,9 +56,13 @@ const Code_space = ({ submit_to_API }) => {
         <Button
           size="small"
           color="secondary"
+          component = "button"
+          disableElevation
           variant="contained"
-          onClick={() => {
+          onClick={(e) => {
             console.log("submit btn clicked");
+            console.log('event was ', e);
+            (e.target).blur();
             handleSubmit(onsubmit)();
           }}
         >
