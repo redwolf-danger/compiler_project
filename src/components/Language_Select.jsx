@@ -1,73 +1,64 @@
-import React from 'react'
-import InputLabel from "@mui/material/InputLabel";
+
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import FormControl from "@mui/material/FormControl";
 import Box from "@mui/material/Box";
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import langs from "../constants/langs";
+// import { ClickAwayListener } from "@mui/material";
 
-const Language_Select = ({props_for_select}) => {
-    let [code_language, set_code_language] = useState("Python3");
-    console.log(code_language);
+
+
+
+const Language_Select = ({props_for_select,lang_change}) => {
+    let [code_language, set_code_language] = useState("PYTHON3_8");
+    let sel = useRef(null);
+
+    // console.log(code_language);
 
     function handle_lang_change(event){
         console.log("prev language is ", code_language)
         console.log("setting language as ", event.target.value)
         set_code_language(()=>event.target.value)
+        lang_change(event.target.value);
+        // console.log('event is ', event)
       }
     
   return (
-    <Box sx={{ maxWidth: 90, minHeight: 20 }}>
-    <FormControl fullWidth>
-      <InputLabel id="demo-simple-select-label">Language</InputLabel>
-
+    <Box >
+      {/* sx={{height: 40}} */}
+    <FormControl size = "small">
+      {/* <InputLabel id="demo-simple-select-label">Language</InputLabel> */}
+      {/* <ClickAwayListener></ClickAwayListener> */}
       <Select 
+       sx={{height: 30,width: 130,color:"grey"}}
       {...props_for_select}
-        defaultValue="Python3"
-        labelId="demo-simple-select-label"
+      ref = {sel}
+        defaultValue="Python 3.8"
         id="demo-simple-select"
         value={code_language}
-        label="Language"
-        onChange={handle_lang_change}
+     
+        onClose={() => {
+          sel.current.classList.remove('Mui-focused');
+          sel.current.previousSibling?.classList.remove('Mui-focused');
+         }}
+        onOpen={() => {
+          sel.current.classList?.add('Mui-focused');
+            sel.current.previousSibling?.classList.add('Mui-focused');
+          }}
+
+        onChange={
+          // (event)=>{
+          handle_lang_change
+          // (event)
+          // console.log('event is ', event)
+        // }
+      }
       >
-
-        <MenuItem value={"C"}>C</MenuItem>
-        <MenuItem value={"Python3"}>C++14</MenuItem>
-        <MenuItem value={"Python8"}>C++17</MenuItem>
-        <MenuItem value={"Python8"}>Clojure</MenuItem>
-
-        <MenuItem value={"Python38"}>C#</MenuItem>
-        <MenuItem value={"Python3"}>Go</MenuItem>
-        <MenuItem value={"Python8"}>Haskell</MenuItem>
-        <MenuItem value={"Python8"}>Java 8</MenuItem>
-
-        <MenuItem value={"Python38"}>Java 14</MenuItem>
-        <MenuItem value={"Python3"}>JavaScript</MenuItem>
-        <MenuItem value={"Python8"}>Kotlin</MenuItem>
-        <MenuItem value={"Python8"}>Objective C</MenuItem>
-
-        <MenuItem value={"Python38"}>Pascal</MenuItem>
-        <MenuItem value={"Python3"}>Perl</MenuItem>
-        <MenuItem value={"Python8"}>PHP</MenuItem>
-        <MenuItem value={"Python8"}>Python 2</MenuItem>
-
-        <MenuItem value={"Python38"}>Python 3</MenuItem>
-        <MenuItem value={"Python3"}>Python 3.8</MenuItem>
-        <MenuItem value={"Python8"}>R</MenuItem>
-        <MenuItem value={"Python8"}>Ruby</MenuItem>
-
-        <MenuItem value={"Python38"}>Python 3</MenuItem>
-        <MenuItem value={"Python3"}>Python 3.8</MenuItem>
-        <MenuItem value={"Python8"}>R</MenuItem>
-        <MenuItem value={"Python8"}>Ruby</MenuItem>
-
-        <MenuItem value={"Python38"}>Rust</MenuItem>
-        <MenuItem value={"Python3"}>Scala</MenuItem>
-        <MenuItem value={"Python8"}>Swift</MenuItem>
-        <MenuItem value={"Python8"}>TypeScript</MenuItem>
-
-        {/* <MenuItem value={"20"}>Twenty</MenuItem>
-    <MenuItem value={"30"}>Thirty</MenuItem> */}
+      {
+        langs.map((obj)=>{return (<MenuItem key={obj.language_argument} value={obj.language_argument}>{obj.language}</MenuItem>
+        )})
+      }
       </Select>
     </FormControl>
   </Box>
