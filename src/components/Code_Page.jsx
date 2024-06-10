@@ -5,7 +5,7 @@ import Language_Select from './Language_Select';
 import Editor_section from './Editor_section';
 import { useForm } from "react-hook-form";
 import pre_written_code from '../constants/template';
-import { useCallback,useState } from 'react';
+import {useState} from 'react';
 
 
 const Code_Page = () => {
